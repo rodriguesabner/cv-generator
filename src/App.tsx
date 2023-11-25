@@ -1,12 +1,19 @@
-import { useState } from 'react'
+import { RouterProvider } from 'react-router-dom'
+import router from './routes'
+import GlobalStyles from './styles/GlobalStyles'
+import { Provider } from 'react-redux'
+import { store } from './store/store'
+import Modal from './components/Modal'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div>
-     
-    </div>
+    <Provider store={store}>
+      <div className='App'>
+        <Modal />
+        <GlobalStyles />
+        <RouterProvider router={router} />
+      </div>
+    </Provider>
   )
 }
 
