@@ -3,7 +3,7 @@ import ListCards from "../../../components/ListCards";
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import { getWebsites, setWebsites } from "../../../store/reducers/cv.reducer";
 import { setChildren, setOpen } from "../../../store/reducers/modal.reducer";
-import { List, WrapperSection, Item, Button } from "../styles";
+import { WrapperSection, Item, Button } from "../styles";
 import AddWebsites from "./Add";
 
 const Websites = () => {
