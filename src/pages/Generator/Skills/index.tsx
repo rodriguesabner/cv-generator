@@ -1,7 +1,8 @@
+import ListCards from "../../../components/ListCards";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { getSkills } from "../../../store/reducers/cv.reducer";
+import { getSkills, setSkills } from "../../../store/reducers/cv.reducer";
 import { setChildren, setOpen } from "../../../store/reducers/modal.reducer";
-import { List, WrapperSection, Item, Button } from "../styles";
+import { WrapperSection, Button } from "../styles";
 import AddSkills from "./Add";
 
 const Skills = () => {
@@ -24,22 +25,21 @@ const Skills = () => {
                 <p>
                     Escolha 5 habilidades importantes que mostram que você se enquadra na posição. Certifique-se de que correspondam às principais habilidades mencionadas na lista de empregos (especialmente ao se inscrever por meio de um sistema online).
                 </p>
-                <List>
-                    {skills.length <= 0 && (
-                        <p>
-                            <b>Você ainda não adicionou nenhuma habilidade</b>
-                        </p>
-                    )}
-                    {skills.map((skill, index) => (
-                        <Item key={index}>
-                            {skill}
-                        </Item>
-                    ))}
+                <ListCards 
+                    data={skills}
+                    type={"skills"} 
+                    handleChangeList={(value) => dispatch(setSkills(value))}
+                 />
 
-                    <Button onClick={() => handleClickAdd()}>
-                        Adicionar mais uma skill
-                    </Button>
-                </List>
+                {skills.length <= 0 && (
+                    <p>
+                        <b>Você ainda não adicionou nenhuma habilidade</b>
+                    </p>
+                )}
+
+                <Button onClick={() => handleClickAdd()}>
+                    Adicionar mais uma skill
+                </Button>
             </div>
         </WrapperSection>
     )
