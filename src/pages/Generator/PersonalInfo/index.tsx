@@ -25,43 +25,43 @@ const PersonalInfo = () => {
             <TwoColumn>
                 <label>
                     Título
-                    <Input name="title" type="text" placeholder="ex: Analista de Sistemas" onChange={(e) => handleInputChange(e)} />
+                    <Input value={personalInfo.title} name="title" type="text" placeholder="ex: Analista de Sistemas" onChange={(e) => handleInputChange(e)} />
                 </label>
             </TwoColumn>
 
             <TwoColumn>
                 <label>
                     Primeiro nome
-                    <Input name="firstName" type="text" placeholder="Maria" onChange={(e) => handleInputChange(e)} />
+                    <Input value={personalInfo.firstName} name="firstName" type="text" placeholder="Maria" onChange={(e) => handleInputChange(e)} />
                 </label>
 
                 <label>
                     Último Nome
-                    <Input name="lastName" type="text" placeholder="Silva" onChange={(e) => handleInputChange(e)} />
+                    <Input value={personalInfo.lastName} name="lastName" type="text" placeholder="Silva" onChange={(e) => handleInputChange(e)} />
                 </label>
             </TwoColumn>
 
             <TwoColumn>
                 <label>
                     Email
-                    <Input name="email" type="text" placeholder="maria.silva@email.com" onChange={(e) => handleInputChange(e)} />
+                    <Input value={personalInfo.email} name="email" type="text" placeholder="maria.silva@email.com" onChange={(e) => handleInputChange(e)} />
                 </label>
 
                 <label>
                     Telefone
-                    <Input name="phoneNumber" type="text" placeholder="1191234-5678" onChange={(e) => handleInputChange(e)} />
+                    <Input value={personalInfo.phoneNumber} name="phoneNumber" type="text" placeholder="1191234-5678" onChange={(e) => handleInputChange(e)} />
                 </label>
             </TwoColumn>
 
             <TwoColumn>
                 <label>
                     País
-                    <Input name="country" type="text" placeholder="Brasil" onChange={(e) => handleInputChange(e)} />
+                    <Input value={personalInfo.country} name="country" type="text" placeholder="Brasil" onChange={(e) => handleInputChange(e)} />
                 </label>
 
                 <label>
                     Cidade
-                    <Input name="city" type="text" placeholder="São Paulo" onChange={(e) => handleInputChange(e)} />
+                    <Input value={personalInfo.city} name="city" type="text" placeholder="São Paulo" onChange={(e) => handleInputChange(e)} />
                 </label>
             </TwoColumn>
         </WrapperSection>
