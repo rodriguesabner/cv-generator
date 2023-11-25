@@ -3,13 +3,13 @@ import type { FC } from 'react'
 import { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import { Layout } from "./styles"
-import { DotsSixVertical } from "phosphor-react"
 
 export interface CardProps {
     id: any
-    text: string
     index: number
+    card: any
     moveCard: (dragIndex: number, hoverIndex: number) => void
+    data: (item: any, index: number) => JSX.Element
 }
 
 const ItemTypes = {
@@ -22,7 +22,7 @@ interface DragItem {
     type: string
 }
 
-export const Card: FC<CardProps> = ({ id, text, index, moveCard }) => {
+export const Card: FC<CardProps> = ({ id, index, moveCard, data, card }) => {
     const ref = useRef<HTMLDivElement>(null)
     const [{ handlerId }, drop] = useDrop<
         DragItem,
@@ -97,10 +97,10 @@ export const Card: FC<CardProps> = ({ id, text, index, moveCard }) => {
 
     const opacity = isDragging ? 0 : 1
     drag(drop(ref))
+
     return (
         <Layout ref={ref} style={{ opacity }} data-handler-id={handlerId}>
-            <DotsSixVertical size={24} color="#ccc" />
-            {text}
+            {data(card, index)}
         </Layout>
     )
 }

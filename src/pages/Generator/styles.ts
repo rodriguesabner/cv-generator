@@ -63,11 +63,11 @@ const List = styled.ul`
 const Item = styled.li`
     width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 20px;
     border: 1px solid rgb(239, 242, 249);
     border-radius: 4px;
+    cursor: move;
 `
 
 const Input = styled.input`

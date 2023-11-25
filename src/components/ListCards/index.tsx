@@ -4,17 +4,18 @@ import { Card } from './Card'
 import { Layout } from './styles'
 
 interface ListCardProps {
-  data: any[];
+  list: any[];
   handleChangeList: (list: any[]) => void;
   type: string;
+  data: (item: any, index: number) => JSX.Element;
 }
 
 const ListCards = (props: ListCardProps) => {
   const [list, setList] = useState<any[]>([]);
 
   useEffect(() => {
-    setList(props.data)
-  }, [props.data])
+    setList(props.list)
+  }, [props.list])
 
   const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
     setList((prevItem: any[]) =>{
@@ -33,28 +34,28 @@ const ListCards = (props: ListCardProps) => {
   const sanitizeData = (item: any) => {
     if(props.type === 'skills') {
       return {
-        text: item
+        label: item
       };
     }
 
     if(props.type === 'languages') {
       return {
         ...item,
-        text: item.language,
+        label: item.language,
       };
     }
 
     if(props.type === 'websites') {
       return {
         ...item,
-        text: item.title,
+        label: item.title,
       };
     }
 
     if(props.type === 'professionalHistory') {
       return {
         ...item,
-        text: item.company,
+        label: item.company,
       };
     }
 
@@ -66,9 +67,10 @@ const ListCards = (props: ListCardProps) => {
     return (
       <Card
         index={index}
-        id={sanitizedCard.text}
-        text={sanitizedCard.text}
+        card={sanitizedCard}
+        id={sanitizedCard.label}
         moveCard={moveCard}
+        data={props.data}
       />
     )
   }, [])

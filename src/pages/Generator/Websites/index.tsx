@@ -1,5 +1,7 @@
+import { DotsSixVertical } from "phosphor-react";
+import ListCards from "../../../components/ListCards";
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
-import { getWebsites } from "../../../store/reducers/cv.reducer";
+import { getWebsites, setWebsites } from "../../../store/reducers/cv.reducer";
 import { setChildren, setOpen } from "../../../store/reducers/modal.reducer";
 import { List, WrapperSection, Item, Button } from "../styles";
 import AddWebsites from "./Add";
@@ -24,21 +26,28 @@ const Websites = () => {
                 <p>
                     Você pode adicionar links para sites que deseja que os gerentes de contratação vejam! Talvez seja um link para seu portfólio, perfil do LinkedIn ou site pessoal
                 </p>
-                <List>
-                    {websites.length <= 0 && (
-                        <p>
-                            <b>Você ainda não adicionou nenhum website/rede social</b>
-                        </p>
-                    )}
-                    {websites.map((website, index) => (
-                        <Item key={index}>
-                            {website.title}
+
+                <ListCards
+                    list={websites}
+                    type={"websites"}
+                    handleChangeList={(value) => dispatch(setWebsites(value))}
+                    data={(item) => (
+                        <Item>
+                            <DotsSixVertical size={24} color={"#ccc"} />
+                            {item.label}
                         </Item>
-                    ))}
-                    <Button onClick={() => handleClickAdd()}>
-                        Adicionar mais um link
-                    </Button>
-                </List>
+                    )}
+                />
+
+                {websites.length <= 0 && (
+                    <p>
+                        <b>Você ainda não adicionou nenhum website/rede social</b>
+                    </p>
+                )}
+
+                <Button onClick={() => handleClickAdd()}>
+                    Adicionar mais um link
+                </Button>
             </div>
         </WrapperSection>
     )

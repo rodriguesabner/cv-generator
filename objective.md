@@ -6,7 +6,7 @@
 
 Tela Generate
 - [x] Estilizar tela
-- [x] Criar componente que seja drag'n drop
+- [x] Criar componente que seja drag'n drop (customizavel)
 - [x] Tornar possível a criação de dados dinâmicos, exemplo, um array de Skills
 - [x] Quando clicar em "gerar currículo", jogar o usuário pra tela de Visualizer e mostrar dados dinâmicos
 - [ ] *Bonus, pode ser que seja possível adiciona mais de um template
