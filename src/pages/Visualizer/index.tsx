@@ -4,7 +4,7 @@ import SimpleCV from "./SimpleCV"
 
 const Visualizer = () => {
     return (
-        <BlueCV />
+        <YellowCV />
     )
 }
 

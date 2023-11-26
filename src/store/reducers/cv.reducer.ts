@@ -29,6 +29,7 @@ export interface CVProps {
     }[],
     skills: string[],
     languages: {
+        label?: string;
         language: string;
         level: string;
     }[],

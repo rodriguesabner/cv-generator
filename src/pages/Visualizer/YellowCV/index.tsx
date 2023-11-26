@@ -33,6 +33,10 @@ const YellowCV = () => {
             flexDirection: 'column',
             fontFamily: 'Inter',
             color: '#262B33',
+            paddingTop: 35,
+            paddingBottom: 65,
+            paddingHorizontal: 35,
+            boxSizing: 'border-box',
         },
         section: {
             display: 'flex',
@@ -47,14 +51,22 @@ const YellowCV = () => {
             flexDirection: 'column',
             justifyContent: 'space-between',
         },
-        leftContainer: {
+        backdropContainer: {
+            backgroundColor: '#F6EEE3',
+            transform: 'scale(1.2)',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '325px',
+        },
+        topContainer: {
             width: '100%',
             display: 'flex',
             flexDirection: 'column',
-            backgroundColor: '#F6EEE3',
-            padding: 20
+            padding: 20,
         },
-        rightContainer: {
+        bottomContainer: {
             width: '100%',
             display: 'flex',
             flexDirection: 'column',
@@ -71,7 +83,8 @@ const YellowCV = () => {
         },
         wrapperSkills: {
             display: 'flex',
-            flexDirection: 'column',
+            flexWrap: 'wrap',
+            flexDirection: 'row',
             gap: 5,
             marginLeft: 20,
         },
@@ -134,7 +147,7 @@ const YellowCV = () => {
             fontSize: 11,
             fontWeight: 600,
             marginBottom: 5,
-            width: '182px'
+            width: '168px'
         },
         contentSectionItems: {
             fontSize: 10,
@@ -170,9 +183,14 @@ const YellowCV = () => {
     return (
         <PDFViewer style={{ minHeight: '100vh', width: '100%' }}>
             <Document>
-                <Page size="A4" style={styles.page}>
+                <Page
+                    size="A4"
+                    style={styles.page}
+                    wrap={true}
+                >
                     <View style={styles.container}>
-                        <View style={styles.leftContainer}>
+                        <View style={styles.backdropContainer} />
+                        <View style={styles.topContainer}>
                             <View style={styles.header}>
                                 <View style={styles.section}>
                                     <Text style={styles.fullname}>{personalInfo.firstName}{" "}{personalInfo.lastName}</Text>
@@ -208,17 +226,23 @@ const YellowCV = () => {
                             </View>
 
                             {skills.length > 0 && (
-                                <View style={styles.wrapperSkills}>
-                                    <Text style={styles.titleBottomLeft}>Habilidades</Text>
-                                    {skills.map((item, index) => (
-                                        <Text key={index} style={styles.contentSectionItems}>{item}</Text>
-                                    ))}
+                                <View style={{ display: 'flex', flexDirection: 'column' }}>
+                                    <Text
+                                        style={[styles.titleBottomLeft, { paddingLeft: 20 }]}
+                                    >
+                                        Habilidades
+                                    </Text>
+                                    <View style={styles.wrapperSkills}>
+                                        {skills.map((item, index) => (
+                                            <Text key={index} style={styles.contentSectionItems}>{item}</Text>
+                                        ))}
+                                    </View>
                                 </View>
                             )}
 
                         </View>
 
-                        <View style={styles.rightContainer}>
+                        <View style={styles.bottomContainer}>
                             {websites.length > 0 && (
                                 <View style={styles.wrapperLinks}>
                                     <Text

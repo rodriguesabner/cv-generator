@@ -1,15 +1,14 @@
 import type { Identifier, XYCoord } from 'dnd-core'
-import type { FC } from 'react'
 import { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import { Layout } from "./styles"
 
-export interface CardProps {
-    id: any
+export interface CardProps<T> {
+    id: string
     index: number
-    card: any
+    card: T
     moveCard: (dragIndex: number, hoverIndex: number) => void
-    data: (item: any, index: number) => JSX.Element
+    data: (item: T, index: number) => JSX.Element
 }
 
 const ItemTypes = {
@@ -22,7 +21,7 @@ interface DragItem {
     type: string
 }
 
-export const Card: FC<CardProps> = ({ id, index, moveCard, data, card }) => {
+export const Card = <T,>(props: CardProps<T>) => {
     const ref = useRef<HTMLDivElement>(null)
     const [{ handlerId }, drop] = useDrop<
         DragItem,
@@ -40,7 +39,7 @@ export const Card: FC<CardProps> = ({ id, index, moveCard, data, card }) => {
                 return
             }
             const dragIndex = item.index
-            const hoverIndex = index
+            const hoverIndex = props.index
 
             // Don't replace items with themselves
             if (dragIndex === hoverIndex) {
@@ -75,7 +74,7 @@ export const Card: FC<CardProps> = ({ id, index, moveCard, data, card }) => {
             }
 
             // Time to actually perform the action
-            moveCard(dragIndex, hoverIndex)
+            props.moveCard(dragIndex, hoverIndex)
 
             // Note: we're mutating the monitor item here!
             // Generally it's better to avoid mutations,
@@ -88,9 +87,9 @@ export const Card: FC<CardProps> = ({ id, index, moveCard, data, card }) => {
     const [{ isDragging }, drag] = useDrag({
         type: ItemTypes.CARD,
         item: () => {
-            return { id, index }
+            return { id: props.id, index: props.index }
         },
-        collect: (monitor: any) => ({
+        collect: (monitor) => ({
             isDragging: monitor.isDragging(),
         }),
     })
@@ -100,7 +99,7 @@ export const Card: FC<CardProps> = ({ id, index, moveCard, data, card }) => {
 
     return (
         <Layout ref={ref} style={{ opacity }} data-handler-id={handlerId}>
-            {data(card, index)}
+            {props.data(props.card, props.index)}
         </Layout>
     )
 }
