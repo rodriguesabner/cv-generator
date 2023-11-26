@@ -10,8 +10,7 @@ const useCVHook = () => {
         function getLocalData() {
             const item = localStorage.getItem('curriculumVitae')
             if (item == null) {
-                setList([]);
-                return;
+                return null;
             }
 
             const data = JSON.parse(item)

@@ -16,7 +16,7 @@ const ListCards = <T,>(props: ListCardProps<T>) => {
 
   useEffect(() => {
     const sanitizedList = props.list.map((item) => sanitizeData(item as T));
-    setList(sanitizedList)
+    setList(sanitizedList as T[])
   }, [props.list])
 
   const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {

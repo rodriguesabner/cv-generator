@@ -16,10 +16,12 @@ export interface CVProps {
         description: string;
     },
     websites: {
+        label?: string;
         title: string;
         url: string;
     }[],
     professionalHistory: {
+        label?: string;
         company: string;
         position: string;
         startDate: string;
@@ -97,7 +99,7 @@ export const cvSlice = createSlice({
     },
 })
 
-export const { 
+export const {
     setCV,
     setPersonalInfo,
     setProfessionalSummary,
@@ -106,7 +108,7 @@ export const {
     setSkills,
     setLanguages,
     setHobbies,
- } = cvSlice.actions
+} = cvSlice.actions
 
 export const getCV = (state: RootState) => state.cv;
 export const getPersonalInfo = (state: RootState) => state.cv.personalInfo;

@@ -1,4 +1,4 @@
-import { DotsSixVertical, Pen, Trash } from "phosphor-react";
+import { Pen, Trash } from "phosphor-react";
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import { CVProps, getProfessionalHistory, setProfessionalHistory } from "../../../store/reducers/cv.reducer";
 import { setChildren, setItemEdit, setOpen } from "../../../store/reducers/modal.reducer";

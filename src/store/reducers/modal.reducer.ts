@@ -4,7 +4,7 @@ import type { RootState } from '../store'
 
 export interface ModalProps {
     open: boolean;
-    item: any | undefined;
+    item: any;
     children: React.ReactNode;
 }
 
