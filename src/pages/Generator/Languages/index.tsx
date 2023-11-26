@@ -1,12 +1,13 @@
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import { CVProps, getLanguages, setLanguages } from "../../../store/reducers/cv.reducer";
-import { setChildren, setOpen } from "../../../store/reducers/modal.reducer";
+import { setChildren, setItemEdit, setOpen } from "../../../store/reducers/modal.reducer";
 import { WrapperSection, Item, Button } from "../styles";
 import * as Constants from "../../../common/constants";
 import AddLanguages from "./Add";
 import ListCards from "../../../components/ListCards";
 import { Pen, Trash } from "phosphor-react";
 import ModalDelete from "../../../components/Generator/ModalDelete";
+import Edit from "./Edit";
 
 const Languages = () => {
     const languages = useAppSelector(getLanguages)
@@ -14,6 +15,13 @@ const Languages = () => {
 
     const handleClickAdd = () => {
         const element = <AddLanguages />
+        dispatch(setChildren(element))
+        dispatch(setOpen(true))
+    }
+
+    const handleClickEdit = (item: CVProps['languages'][0]) => {
+        const element = <Edit />
+        dispatch(setItemEdit(item))
         dispatch(setChildren(element))
         dispatch(setOpen(true))
     }
@@ -68,7 +76,7 @@ const Languages = () => {
                             </div>
 
                             <div>
-                                <button onClick={() => console.log(item)}>
+                                <button onClick={() => handleClickEdit(item)}>
                                     <Pen size={20} />
                                 </button>
 

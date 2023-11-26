@@ -2,10 +2,11 @@ import { Pen, Trash } from "phosphor-react";
 import ListCards from "../../../components/ListCards";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { CVProps, getSkills, setSkills } from "../../../store/reducers/cv.reducer";
-import { setChildren, setOpen } from "../../../store/reducers/modal.reducer";
+import { setChildren, setItemEdit, setOpen } from "../../../store/reducers/modal.reducer";
 import { WrapperSection, Button, Item } from "../styles";
 import AddSkills from "./Add";
 import ModalDelete from "../../../components/Generator/ModalDelete";
+import Edit from "./Edit";
 
 const Skills = () => {
     const skills = useAppSelector(getSkills)
@@ -13,6 +14,13 @@ const Skills = () => {
 
     const handleClickAdd = () => {
         const element = <AddSkills />
+        dispatch(setChildren(element))
+        dispatch(setOpen(true))
+    }
+
+    const handleClickEdit = (item: CVProps['skills'][0]) => {
+        const element = <Edit />
+        dispatch(setItemEdit(item.label))
         dispatch(setChildren(element))
         dispatch(setOpen(true))
     }
@@ -57,7 +65,7 @@ const Skills = () => {
                             {skill.label}
 
                             <div>
-                                <button onClick={() => console.log(skill)}>
+                                <button onClick={() => handleClickEdit(skill)}>
                                     <Pen size={20} />
                                 </button>
 

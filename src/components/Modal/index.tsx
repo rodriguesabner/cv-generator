@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { getOpen, getChildren, setOpen, setChildren } from "../../store/reducers/modal.reducer";
+import { getOpen, getChildren, setOpen, setChildren, setItemEdit } from "../../store/reducers/modal.reducer";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { Layout, Container, Backrop } from "./styles";
 import { useEffect } from "react";
@@ -12,6 +12,7 @@ const Modal = () => {
     useEffect(() => {
         if (!isOpen) {
             dispatch(setChildren(undefined))
+            dispatch(setItemEdit(undefined))
         }
     }, [isOpen])
 

@@ -1,11 +1,12 @@
 import { DotsSixVertical, Pen, Trash } from "phosphor-react";
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import { CVProps, getProfessionalHistory, setProfessionalHistory } from "../../../store/reducers/cv.reducer";
-import { setChildren, setOpen } from "../../../store/reducers/modal.reducer";
+import { setChildren, setItemEdit, setOpen } from "../../../store/reducers/modal.reducer";
 import { WrapperSection, Item, Button } from "../styles";
 import AddHistory from "./Add";
 import ListCards from "../../../components/ListCards";
 import ModalDelete from "../../../components/Generator/ModalDelete";
+import Edit from "./Edit";
 
 const ProfessionalHistory = () => {
     const professionalHistories = useAppSelector(getProfessionalHistory)
@@ -13,6 +14,13 @@ const ProfessionalHistory = () => {
 
     const handleClickAdd = () => {
         const element = <AddHistory />
+        dispatch(setChildren(element))
+        dispatch(setOpen(true))
+    }
+
+    const handleClickEdit = (item: CVProps['professionalHistory'][0]) => {
+        const element = <Edit />
+        dispatch(setItemEdit(item))
         dispatch(setChildren(element))
         dispatch(setOpen(true))
     }
@@ -70,7 +78,7 @@ const ProfessionalHistory = () => {
                             </div>
 
                             <div>
-                                <button onClick={() => console.log(history)}>
+                                <button onClick={() => handleClickEdit(history)}>
                                     <Pen size={20} />
                                 </button>
 

@@ -2,10 +2,11 @@ import { Pen, Trash } from "phosphor-react";
 import ListCards from "../../../components/ListCards";
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import { CVProps, getWebsites, setWebsites } from "../../../store/reducers/cv.reducer";
-import { setChildren, setOpen } from "../../../store/reducers/modal.reducer";
+import { setChildren, setOpen, setItemEdit } from "../../../store/reducers/modal.reducer";
 import { WrapperSection, Item, Button } from "../styles";
 import AddWebsites from "./Add";
 import ModalDelete from "../../../components/Generator/ModalDelete";
+import Edit from "./Edit";
 
 const Websites = () => {
     const websites = useAppSelector(getWebsites)
@@ -13,6 +14,13 @@ const Websites = () => {
 
     const handleClickAdd = () => {
         const element = <AddWebsites />
+        dispatch(setChildren(element))
+        dispatch(setOpen(true))
+    }
+
+    const handleClickEdit = (item: CVProps['websites'][0]) => {
+        const element = <Edit />
+        dispatch(setItemEdit(item))
         dispatch(setChildren(element))
         dispatch(setOpen(true))
     }
@@ -58,7 +66,7 @@ const Websites = () => {
                             {item.label}
 
                             <div>
-                                <button onClick={() => console.log(item)}>
+                                <button onClick={() => handleClickEdit(item)}>
                                     <Pen size={20} />
                                 </button>
 

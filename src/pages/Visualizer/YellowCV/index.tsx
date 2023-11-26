@@ -53,12 +53,13 @@ const YellowCV = () => {
         },
         backdropContainer: {
             backgroundColor: '#F6EEE3',
-            transform: 'scale(1.2)',
+            transform: 'scale(1.3)',
             position: 'absolute',
             top: 0,
             left: 0,
             right: 0,
-            height: '325px',
+            height: '245px',
+            marginTop: -10
         },
         topContainer: {
             width: '100%',

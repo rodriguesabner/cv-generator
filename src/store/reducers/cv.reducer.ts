@@ -64,6 +64,15 @@ export const cvSlice = createSlice({
     name: 'cv',
     initialState,
     reducers: {
+        setCV: (state, action: PayloadAction<CVProps>) => {
+            state.personalInfo = action.payload.personalInfo
+            state.professionalSummary = action.payload.professionalSummary
+            state.websites = action.payload.websites
+            state.professionalHistory = action.payload.professionalHistory
+            state.skills = action.payload.skills
+            state.languages = action.payload.languages
+            state.hobbies = action.payload.hobbies
+        },
         setPersonalInfo: (state, action: PayloadAction<CVProps['personalInfo']>) => {
             state.personalInfo = action.payload
         },
@@ -89,6 +98,7 @@ export const cvSlice = createSlice({
 })
 
 export const { 
+    setCV,
     setPersonalInfo,
     setProfessionalSummary,
     setWebsites,
@@ -98,6 +108,7 @@ export const {
     setHobbies,
  } = cvSlice.actions
 
+export const getCV = (state: RootState) => state.cv;
 export const getPersonalInfo = (state: RootState) => state.cv.personalInfo;
 export const getProfessionalSummary = (state: RootState) => state.cv.professionalSummary;
 export const getWebsites = (state: RootState) => state.cv.websites;
