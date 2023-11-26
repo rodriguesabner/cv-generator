@@ -22,6 +22,7 @@ Tela Visualizer
 - [x] Deve receber dados dinâmicos do LocalStorage
 - [x] Deve receber dados dinâmicos do Redux
 - [x] Mostrando apenas o que foi preenchido
+- [x] Mostrar tela de nenhum dado encontrado
 
 
 # Campos obrigatórios:

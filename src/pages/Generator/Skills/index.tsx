@@ -20,7 +20,7 @@ const Skills = () => {
 
     const handleClickEdit = (item: CVProps['skills'][0]) => {
         const element = <Edit />
-        dispatch(setItemEdit(item.label))
+        dispatch(setItemEdit(item))
         dispatch(setChildren(element))
         dispatch(setOpen(true))
     }
@@ -32,7 +32,7 @@ const Skills = () => {
             item={item}
             callback={(value) => deleteItem(value)}
             title={"Deletar skill"}
-            description={`<p>Tem certeza que deseja deletar a habilidade <b>"${item.label}"</b>?</p>`}
+            description={`<p>Tem certeza que deseja deletar a habilidade <b>"${item}"</b>?</p>`}
         />
 
         dispatch(setChildren(element))
@@ -42,7 +42,7 @@ const Skills = () => {
     function deleteItem(
         value: CVProps['skills'][0]
     ) {
-        const newValues = skills.filter((item) => item !== value.label)
+        const newValues = skills.filter((item) => item !== value)
         dispatch(setSkills(newValues));
     }
 
@@ -62,7 +62,7 @@ const Skills = () => {
                     handleChangeList={(value) => dispatch(setSkills(value))}
                     data={(skill, index) => (
                         <Item key={index}>
-                            {skill.label}
+                            {skill}
 
                             <div>
                                 <button onClick={() => handleClickEdit(skill)}>

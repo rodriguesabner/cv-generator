@@ -7,12 +7,11 @@ import ProfessionalSummary from "./ProfessionalSummary"
 import Skills from "./Skills"
 import Websites from "./Websites"
 import { Form, Layout, ButtonGenerate } from "./styles"
-import { useAppSelector } from "../../store/hooks"
-import { getCV } from "../../store/reducers/cv.reducer"
+import useCVHook from "../../hooks/useCV.hook"
 
 const Generator = () => {
     const navigate = useNavigate()
-    const cv = useAppSelector(getCV)
+    const cv = useCVHook();
 
     function setLocalData(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
         e.preventDefault();

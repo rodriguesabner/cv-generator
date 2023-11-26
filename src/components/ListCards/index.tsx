@@ -35,9 +35,9 @@ const ListCards = <T,>(props: ListCardProps<T>) => {
 
   const sanitizeData = (item: T) => {
     if (props.type === 'skills') {
-      return {
-        label: item
-      };
+      const itemSkills = item as CVProps['skills'][0];
+
+      return itemSkills;
     }
 
     if (props.type === 'languages') {
@@ -76,7 +76,7 @@ const ListCards = <T,>(props: ListCardProps<T>) => {
         key={index}
         index={index}
         card={item}
-        id={(item as { label: string }).label}
+        id={(item as { label: string }).label ?? item}
         moveCard={moveCard}
         data={props.data}
       />

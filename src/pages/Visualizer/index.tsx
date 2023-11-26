@@ -3,14 +3,15 @@ import BlueCV from "./BlueCV"
 import SimpleCV from "./SimpleCV"
 import CVNotFound from "./NotFound"
 import { useEffect, useState } from "react"
-import { getCV, setCV } from "../../store/reducers/cv.reducer"
-import { useAppSelector, useAppDispatch } from "../../store/hooks"
+import { setCV } from "../../store/reducers/cv.reducer"
+import { useAppDispatch } from "../../store/hooks"
+import useCVHook from "../../hooks/useCV.hook"
 
 const Visualizer = () => {
     const [hasData, setHasData] = useState(false);
     const [loading, setLoading] = useState(true);
+    const cv = useCVHook();
 
-    const cv = useAppSelector(getCV)
     const dispatch = useAppDispatch();
 
     useEffect(() => {
