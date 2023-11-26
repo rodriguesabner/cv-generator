@@ -2,11 +2,12 @@ import type { Identifier, XYCoord } from 'dnd-core'
 import { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import { Layout } from "./styles"
+import { DotsSixVertical } from 'phosphor-react'
 
 export interface CardProps<T> {
     id: string
     index: number
-    card: T
+    card: T,
     moveCard: (dragIndex: number, hoverIndex: number) => void
     data: (item: T, index: number) => JSX.Element
 }
@@ -98,7 +99,12 @@ export const Card = <T,>(props: CardProps<T>) => {
     drag(drop(ref))
 
     return (
-        <Layout ref={ref} style={{ opacity }} data-handler-id={handlerId}>
+        <Layout style={{ opacity }} ref={ref} data-handler-id={handlerId}>
+            <DotsSixVertical
+                className={"move__icon"}
+                size={24}
+                color={"#ccc"}
+            />
             {props.data(props.card, props.index)}
         </Layout>
     )

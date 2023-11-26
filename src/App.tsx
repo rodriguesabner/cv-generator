@@ -9,15 +9,15 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 
 function App() {
   return (
-    <DndProvider backend={HTML5Backend}>
-      <Provider store={store}>
+    <Provider store={store}>
+      <DndProvider backend={HTML5Backend}>
         <div className='App'>
           <Modal />
           <GlobalStyles />
           <RouterProvider router={router} />
         </div>
-      </Provider>
-    </DndProvider>
+      </DndProvider>
+    </Provider>
   )
 }
 

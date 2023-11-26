@@ -1,13 +1,20 @@
 import { createPortal } from "react-dom";
-import { getOpen, getChildren, setOpen } from "../../store/reducers/modal.reducer";
+import { getOpen, getChildren, setOpen, setChildren } from "../../store/reducers/modal.reducer";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { Layout, Container, Backrop } from "./styles";
+import { useEffect } from "react";
 
 const Modal = () => {
     const isOpen = useAppSelector(getOpen)
     const children = useAppSelector(getChildren)
-
     const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        if (!isOpen) {
+            dispatch(setChildren(undefined))
+        }
+    }, [isOpen])
+
 
     const handleClose = () => {
         dispatch(setOpen(false))
@@ -15,7 +22,7 @@ const Modal = () => {
 
     return isOpen ? createPortal(
         <Layout>
-            <Backrop onClick={() => handleClose()}/>
+            <Backrop onClick={() => handleClose()} />
             <Container>
                 {children}
             </Container>

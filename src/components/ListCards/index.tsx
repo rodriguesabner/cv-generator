@@ -6,16 +6,17 @@ import { CVProps } from '../../store/reducers/cv.reducer';
 
 interface ListCardProps<T> {
   list: Array<T>;
-  handleChangeList: (list: Array<T>) => void;
   type: string;
   data: (item: T, index: number) => JSX.Element;
+  handleChangeList: (list: Array<T>) => void;
 }
 
 const ListCards = <T,>(props: ListCardProps<T>) => {
   const [list, setList] = useState<T[]>([]);
 
   useEffect(() => {
-    setList(props.list)
+    const sanitizedList = props.list.map((item) => sanitizeData(item as T));
+    setList(sanitizedList)
   }, [props.list])
 
   const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
@@ -30,7 +31,7 @@ const ListCards = <T,>(props: ListCardProps<T>) => {
       props.handleChangeList(newList);
       return newList;
     })
-  }, [])
+  }, [props])
 
   const sanitizeData = (item: T) => {
     if (props.type === 'skills') {
@@ -69,18 +70,18 @@ const ListCards = <T,>(props: ListCardProps<T>) => {
     return item;
   }
 
-  const renderCard = useCallback((card: T, index: number) => {
-    const sanitizedCard = sanitizeData(card);
+  const renderCard = useCallback((item: T, index: number) => {
     return (
       <Card
+        key={index}
         index={index}
-        card={sanitizedCard as T}
-        id={(sanitizedCard as { label: string }).label}
+        card={item}
+        id={(item as { label: string }).label}
         moveCard={moveCard}
         data={props.data}
       />
     )
-  }, [])
+  }, [props.data, moveCard])
 
   return (
     <Layout>{list.map((item, i) => renderCard(item, i))}</Layout>

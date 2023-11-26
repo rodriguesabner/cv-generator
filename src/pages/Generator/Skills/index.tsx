@@ -1,10 +1,11 @@
-import { DotsSixVertical } from "phosphor-react";
+import { Pen, Trash } from "phosphor-react";
 import ListCards from "../../../components/ListCards";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { getSkills, setSkills } from "../../../store/reducers/cv.reducer";
+import { CVProps, getSkills, setSkills } from "../../../store/reducers/cv.reducer";
 import { setChildren, setOpen } from "../../../store/reducers/modal.reducer";
 import { WrapperSection, Button, Item } from "../styles";
 import AddSkills from "./Add";
+import ModalDelete from "../../../components/Generator/ModalDelete";
 
 const Skills = () => {
     const skills = useAppSelector(getSkills)
@@ -14,6 +15,27 @@ const Skills = () => {
         const element = <AddSkills />
         dispatch(setChildren(element))
         dispatch(setOpen(true))
+    }
+
+    const handleOpenDelete = (
+        item: CVProps['skills'][0]
+    ) => {
+        const element = <ModalDelete
+            item={item}
+            callback={(value) => deleteItem(value)}
+            title={"Deletar skill"}
+            description={`<p>Tem certeza que deseja deletar a habilidade <b>"${item.label}"</b>?</p>`}
+        />
+
+        dispatch(setChildren(element))
+        dispatch(setOpen(true))
+    }
+
+    function deleteItem(
+        value: CVProps['skills'][0]
+    ) {
+        const newValues = skills.filter((item) => item !== value.label)
+        dispatch(setSkills(newValues));
     }
 
     return (
@@ -30,14 +52,22 @@ const Skills = () => {
                     list={skills}
                     type={"skills"}
                     handleChangeList={(value) => dispatch(setSkills(value))}
-                    data={(item) => (
-                        <Item>
-                            <DotsSixVertical size={24} color={"#ccc"} />
-                            {item.label}
+                    data={(skill, index) => (
+                        <Item key={index}>
+                            {skill.label}
+
+                            <div>
+                                <button onClick={() => console.log(skill)}>
+                                    <Pen size={20} />
+                                </button>
+
+                                <button onClick={() => handleOpenDelete(skill)}>
+                                    <Trash size={20} color={"#cf4343"} />
+                                </button>
+                            </div>
                         </Item>
                     )}
                 />
-
 
                 {skills.length <= 0 && (
                     <p>

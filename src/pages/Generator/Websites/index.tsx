@@ -1,10 +1,11 @@
-import { DotsSixVertical } from "phosphor-react";
+import { Pen, Trash } from "phosphor-react";
 import ListCards from "../../../components/ListCards";
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
-import { getWebsites, setWebsites } from "../../../store/reducers/cv.reducer";
+import { CVProps, getWebsites, setWebsites } from "../../../store/reducers/cv.reducer";
 import { setChildren, setOpen } from "../../../store/reducers/modal.reducer";
 import { WrapperSection, Item, Button } from "../styles";
 import AddWebsites from "./Add";
+import ModalDelete from "../../../components/Generator/ModalDelete";
 
 const Websites = () => {
     const websites = useAppSelector(getWebsites)
@@ -14,6 +15,27 @@ const Websites = () => {
         const element = <AddWebsites />
         dispatch(setChildren(element))
         dispatch(setOpen(true))
+    }
+
+    const handleOpenDelete = (
+        item: CVProps['websites'][0]
+    ) => {
+        const element = <ModalDelete
+            item={item}
+            callback={(value) => deleteItem(value)}
+            title={"Deletar Website"}
+            description={`<p>Tem certeza que deseja deletar o website <b>"${item.label}"</b>?</p>`}
+        />
+
+        dispatch(setChildren(element))
+        dispatch(setOpen(true))
+    }
+
+    function deleteItem(
+        value: CVProps['websites'][0]
+    ) {
+        const newValues = websites.filter((item) => item.title !== value.label)
+        dispatch(setWebsites(newValues));
     }
 
     return (
@@ -33,8 +55,17 @@ const Websites = () => {
                     handleChangeList={(value) => dispatch(setWebsites(value))}
                     data={(item) => (
                         <Item>
-                            <DotsSixVertical size={24} color={"#ccc"} />
                             {item.label}
+
+                            <div>
+                                <button onClick={() => console.log(item)}>
+                                    <Pen size={20} />
+                                </button>
+
+                                <button onClick={() => handleOpenDelete(item)}>
+                                    <Trash size={20} color={"#cf4343"} />
+                                </button>
+                            </div>
                         </Item>
                     )}
                 />

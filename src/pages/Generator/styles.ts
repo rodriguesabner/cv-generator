@@ -64,10 +64,31 @@ const Item = styled.li`
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 20px;
     border: 1px solid rgb(239, 242, 249);
     border-radius: 4px;
-    cursor: move;
+
+    div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+
+        h4 {
+            margin-right: 5px;
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+
+        button {
+            background-color: transparent;
+            border: 0;
+            cursor: pointer;
+        }
+    }
 `
 
 const Input = styled.input`
