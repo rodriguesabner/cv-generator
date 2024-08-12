@@ -130,7 +130,7 @@ const SimpleCV = () => {
     });
 
     return (
-        <PDFViewer style={{ minHeight: '100vh', width: '100%' }}>
+        <PDFViewer style={{ minHeight: '100%', width: '100%' }}>
             <Document>
                 <Page size="A4" style={styles.page}>
                     <View style={styles.section}>
