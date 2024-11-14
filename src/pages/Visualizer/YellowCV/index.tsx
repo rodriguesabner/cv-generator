@@ -67,7 +67,6 @@ const YellowCV = () => {
             left: 0,
             right: 0,
             height: '100%',
-            marginTop: -10
         },
         topContainer: {
             width: '100%',
@@ -161,7 +160,7 @@ const YellowCV = () => {
         contentSectionItems: {
             fontSize: 10,
             fontWeight: 400,
-            opacity: .8
+            opacity: .8,
         },
         resumeText: {
             fontSize: 24,
@@ -224,9 +223,7 @@ const YellowCV = () => {
                                     }}
                                 />
 
-                                <Text
-                                    style={styles.cityCountry}
-                                >
+                                <Text style={styles.cityCountry}>
                                     {personalInfo.city}{", "}{personalInfo.country}
                                 </Text>
 
@@ -294,7 +291,7 @@ const YellowCV = () => {
                                             <Text
                                                 style={styles.dateItem}>{item.startDate} - {item.endDate !== '' ? item.endDate : 'Atual'}</Text>
                                         </View>
-                                        <View style={{width: "60%"}}>
+                                        <View style={{width: "60%", marginLeft: 10}}>
                                             <Text style={styles.contentSectionItems}>
                                                 {item.description}
                                             </Text>

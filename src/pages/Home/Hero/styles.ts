@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Layout = styled.div`
+    background-color: #eff2f9;
     width: 100%;
     min-height: 100vh;
     height: 100%;
@@ -13,7 +14,7 @@ const Container = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    //max-width: 800px;
+    max-width: 800px;
     margin: 0 auto;
     justify-content: center;
     align-items: center;

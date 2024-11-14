@@ -6,6 +6,8 @@ export default createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
         font-family: 'Inter', sans-serif;
+        outline: 0;
+        border: 0;
     }
 
     body {
