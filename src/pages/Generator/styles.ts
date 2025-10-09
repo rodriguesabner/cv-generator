@@ -3,7 +3,8 @@ import styled from "styled-components"
 const Layout = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 2em;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8edf3 100%);
 `
 
 const TwoColumn = styled.div`
@@ -45,6 +46,10 @@ const Form = styled.div`
     justify-content: center;
     max-width: 800px;
     margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 
     .personal_info__section {
         gap: 10px;
@@ -148,17 +153,81 @@ const Button = styled.button`
 `;
 
 const ButtonGenerate = styled.button`
-    font-size: 14px;
+    font-size: 16px;
     line-height: 20px;
     font-weight: 600;
     background-color: rgb(26, 145, 240);
     cursor: pointer;
     color: #fff;
-    padding: 8px 16px;
+    padding: 14px 24px;
     border: 0;
     width: 100%;
     margin-top: 2em;
-    border-radius: 4px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background-color: rgb(20, 120, 200);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(26, 145, 240, 0.3);
+    }
+
+    &:disabled {
+        background-color: rgb(130, 139, 162);
+        cursor: not-allowed;
+        transform: none;
+    }
+`;
+
+const NavigationButtons = styled.div`
+    display: flex;
+    gap: 16px;
+    margin-top: 2em;
+
+    button {
+        flex: 1;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 14px 24px;
+        border: 0;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+
+        &.prev {
+            background-color: white;
+            color: rgb(26, 145, 240);
+            border: 2px solid rgb(26, 145, 240);
+
+            &:hover {
+                background-color: rgb(239, 242, 249);
+            }
+        }
+
+        &.next {
+            background-color: rgb(26, 145, 240);
+            color: #fff;
+
+            &:hover {
+                background-color: rgb(20, 120, 200);
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(26, 145, 240, 0.3);
+            }
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+`;
+
+const Header = styled.div`
+    padding: 32px 0;
+    margin: 0 auto;
+    max-width: 800px;
+    width: 100%;
 `;
 
 export {
@@ -173,4 +242,6 @@ export {
     TextArea,
     Button,
     ButtonGenerate,
+    NavigationButtons,
+    Header,
 }

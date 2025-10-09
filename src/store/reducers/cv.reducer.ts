@@ -3,6 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../store'
 
 export interface CVProps {
+    currentStep: number;
     personalInfo: {
         title?: string;
         firstName?: string;
@@ -41,6 +42,7 @@ export interface CVProps {
 }
 
 const initialState: CVProps = {
+    currentStep: 0,
     personalInfo: {
         title: '',
         firstName: '',
@@ -67,6 +69,7 @@ export const cvSlice = createSlice({
     initialState,
     reducers: {
         setCV: (state, action: PayloadAction<CVProps>) => {
+            state.currentStep = action.payload.currentStep || 0
             state.personalInfo = action.payload.personalInfo
             state.professionalSummary = action.payload.professionalSummary
             state.websites = action.payload.websites
@@ -74,6 +77,9 @@ export const cvSlice = createSlice({
             state.skills = action.payload.skills
             state.languages = action.payload.languages
             state.hobbies = action.payload.hobbies
+        },
+        setCurrentStep: (state, action: PayloadAction<number>) => {
+            state.currentStep = action.payload
         },
         setPersonalInfo: (state, action: PayloadAction<CVProps['personalInfo']>) => {
             state.personalInfo = action.payload
@@ -101,6 +107,7 @@ export const cvSlice = createSlice({
 
 export const {
     setCV,
+    setCurrentStep,
     setPersonalInfo,
     setProfessionalSummary,
     setWebsites,
@@ -111,6 +118,7 @@ export const {
 } = cvSlice.actions
 
 export const getCV = (state: RootState) => state.cv;
+export const getCurrentStep = (state: RootState) => state.cv.currentStep;
 export const getPersonalInfo = (state: RootState) => state.cv.personalInfo;
 export const getProfessionalSummary = (state: RootState) => state.cv.professionalSummary;
 export const getWebsites = (state: RootState) => state.cv.websites;

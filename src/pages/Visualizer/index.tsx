@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import { setCV } from "../../store/reducers/cv.reducer"
 import { useAppDispatch } from "../../store/hooks"
 import useCVHook from "../../hooks/useCV.hook"
-import { Layout, List, Right, Left, Header, Container } from "./style"
+import { Layout, List, Right, Left, Header, Container, TemplateTitle } from "./style"
 import { Link } from "react-router-dom"
 import { CaretLeft } from "phosphor-react"
 import OneColumnCV from "./OneColumnCV";
@@ -59,25 +59,26 @@ const Visualizer = () => {
                     </Header>
                     <Container>
                         <Left>
+                            <TemplateTitle>Escolha um Template</TemplateTitle>
                             <List>
                                 <li>
                                     <button onClick={() => setCurrentCV(<SimpleCV />)}>
-                                        <img src="https://s3.resume.io/cdn-cgi/image/format=auto,fit=scale-down,dpr=1.75,width=154/uploads/local_template_image/image/370/persistent-resource/stockholm-resume-templates.jpg" alt="arrow" />
+                                        <img src="https://s3.resume.io/cdn-cgi/image/format=auto,fit=scale-down,dpr=1.75,width=154/uploads/local_template_image/image/370/persistent-resource/stockholm-resume-templates.jpg" alt="Template Simples" />
                                     </button>
                                 </li>
                                 <li>
                                     <button onClick={() => setCurrentCV(<YellowCV />)}>
-                                        <img src="https://s3.resume.io/cdn-cgi/image/format=auto,fit=scale-down,dpr=1.75,width=154/uploads/local_template_image/image/1826/persistent-resource/copenhagen-resume-templates.jpg" alt="arrow" />
+                                        <img src="https://s3.resume.io/cdn-cgi/image/format=auto,fit=scale-down,dpr=1.75,width=154/uploads/local_template_image/image/1826/persistent-resource/copenhagen-resume-templates.jpg" alt="Template Amarelo" />
                                     </button>
                                 </li>
                                 <li>
                                     <button onClick={() => setCurrentCV(<BlueCV />)}>
-                                        <img src="https://s3.resume.io/cdn-cgi/image/format=auto,fit=scale-down,dpr=1.75,width=154/uploads/local_template_image/image/441/persistent-resource/sydney-resume-templates.jpg" alt="arrow" />
+                                        <img src="https://s3.resume.io/cdn-cgi/image/format=auto,fit=scale-down,dpr=1.75,width=154/uploads/local_template_image/image/441/persistent-resource/sydney-resume-templates.jpg" alt="Template Azul" />
                                     </button>
                                 </li>
                                 <li>
                                     <button onClick={() => setCurrentCV(<OneColumnCV />)}>
-                                        <img src="https://s3.resume.io/cdn-cgi/image/format=auto,fit=scale-down,dpr=1.75,width=154/uploads/local_template_image/image/441/persistent-resource/sydney-resume-templates.jpg" alt="arrow" />
+                                        <img src="https://s3.resume.io/cdn-cgi/image/format=auto,fit=scale-down,dpr=1.75,width=154/uploads/local_template_image/image/441/persistent-resource/sydney-resume-templates.jpg" alt="Template Uma Coluna" />
                                     </button>
                                 </li>
                             </List>
