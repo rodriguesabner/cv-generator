@@ -9,6 +9,7 @@ import useCVHook from "../../hooks/useCV.hook"
 import { Layout, List, Right, Left, Header, Container } from "./style"
 import { Link } from "react-router-dom"
 import { CaretLeft } from "phosphor-react"
+import OneColumnCV from "./OneColumnCV";
 
 const Visualizer = () => {
     const [hasData, setHasData] = useState(false);
@@ -26,6 +27,7 @@ const Visualizer = () => {
             }
 
             const data = JSON.parse(item)
+
             dispatch(setCV(data));
             setHasData(true);
         }
@@ -70,6 +72,11 @@ const Visualizer = () => {
                                 </li>
                                 <li>
                                     <button onClick={() => setCurrentCV(<BlueCV />)}>
+                                        <img src="https://s3.resume.io/cdn-cgi/image/format=auto,fit=scale-down,dpr=1.75,width=154/uploads/local_template_image/image/441/persistent-resource/sydney-resume-templates.jpg" alt="arrow" />
+                                    </button>
+                                </li>
+                                <li>
+                                    <button onClick={() => setCurrentCV(<OneColumnCV />)}>
                                         <img src="https://s3.resume.io/cdn-cgi/image/format=auto,fit=scale-down,dpr=1.75,width=154/uploads/local_template_image/image/441/persistent-resource/sydney-resume-templates.jpg" alt="arrow" />
                                     </button>
                                 </li>
